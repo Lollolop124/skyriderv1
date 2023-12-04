@@ -115,7 +115,109 @@
   </style>
   </head>
   <body>
+<div class="card-container"></div>
+  <script>
+  function toggleMenu() {
+    const navbarLinks = document.getElementById('navbarLinks');
+    navbarLinks.classList.toggle('show');
+  }
 
+  function hideMenu() {
+    const navbarLinks = document.getElementById('navbarLinks');
+    navbarLinks.classList.remove('show');
+  }
+
+  window.addEventListener('resize', function() {
+    const screenWidth = window.innerWidth;
+    if (screenWidth > 600) {
+      hideMenu();
+    }
+  });
+
+    const gameCards = {
+       "card12": {
+         "title": "Stickman Hook",
+        "image": "pictures/stickmanhook.png",
+        "url": "/games/stickman-hook/index.html"
+      },
+      "card11": {
+        "title": "Retro Bowl",
+        "image": "pictures/retrobowl.png",
+        "url": "/games/retrobowl/index.html"
+      },
+        "card10": {
+        "title": "Monkey Mart",
+        "image": "pictures/monkey-mart",
+        "url": "/games/monkey-mart/index.html"
+      },
+      "card9": {
+         "title": "",
+        "image": "",
+        "url": ""
+      },
+      "card8": {
+       "title": "",
+        "image": "",
+        "url": ""
+      },
+      "card7": {
+         "title": "",
+        "image": "",
+        "url": ""
+      },
+      "card6": {
+         "title": "",
+        "image": "",
+        "url": ""
+      },
+      "card5": {
+        "title": "",
+        "image": "",
+        "url": ""
+      },
+       "card4": {
+         "title": "",
+        "image": "",
+        "url": ""
+      },
+      "card3": {
+        "title": "",
+        "image": "",
+        "url": ""
+      },
+      "card2": {
+         "title": "",
+        "image": "",
+        "url": ""
+      },
+      "card1": {
+        "title": "",
+        "image": "",
+        "url": ""
+      }
+    };
+
+    // Sort the game cards by title
+    const sortedCards = {};
+    Object.keys(gameCards)
+      .sort((a, b) => gameCards[a].title.localeCompare(gameCards[b].title))
+      .forEach((key, index) => {
+        sortedCards[`card${index + 1}`] = gameCards[key];
+      });
+
+    const cardContainer = document.querySelector('.card-container');
+    Object.keys(sortedCards).forEach(key => {
+      const card = sortedCards[key];
+      const cardElement = document.createElement('a');
+      cardElement.classList.add('card');
+      cardElement.href = card.url;
+      cardElement.innerHTML = `
+        <img src="${card.image}" alt="${card.title}">
+        <h2>${card.title}</h2>
+      `;
+      cardContainer.appendChild(cardElement);
+    });
+</script>
  
 
   </body>
